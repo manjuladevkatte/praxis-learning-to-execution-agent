@@ -1,0 +1,42 @@
+PRODUCTION ORDERS API TROUBLESHOOTING SOP
+
+Purpose:
+This SOP teaches Cloud Technical Support Engineers how to troubleshoot
+authorization failures affecting the Production Orders API.
+
+Expected capabilities:
+
+1. Identify the customer-facing symptom.
+2. Inspect application and service logs.
+3. Determine whether the failure is authentication or authorization.
+4. Identify the service account used by the Orders API.
+5. Inspect IAM permissions for the service account.
+6. Apply the correct IAM remediation.
+7. Verify that the API has recovered.
+
+Troubleshooting guidance:
+
+HTTP 401 generally indicates an authentication problem.
+
+HTTP 403 generally indicates that the request reached the service but
+the caller does not have sufficient permission.
+
+When an HTTP 403 occurs, inspect the application logs before changing
+infrastructure.
+
+Look for messages indicating permission denied, authorization failure,
+or missing IAM permissions.
+
+If the logs indicate an authorization failure, identify the service
+account associated with the affected API.
+
+Review the service account's IAM permissions.
+
+If the required permission is missing, apply the approved IAM role
+required by the Orders API.
+
+After remediation, send a test request to the API and verify that the
+response changes from HTTP 403 to HTTP 200.
+
+Never make unrelated infrastructure changes while investigating an
+authorization failure.
